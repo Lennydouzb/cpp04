@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/20 10:24:18 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/20 10:25:25 by ldesboui         ###   ########.fr       */
+/*   Created: 2026/03/24 14:47:26 by ldesboui          #+#    #+#             */
+/*   Updated: 2026/03/26 14:18:24 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #pragma once
-#include "WrongAnimal.hpp"
+#include <string>
+#include <iostream>
 
-class WrongCat : public WrongAnimal
+class Brain
 {
+private:
+	std::string ideas[100];
 public:
-	WrongCat( void );
-	WrongCat(const WrongCat& aWrongCat);
-	WrongCat& operator=(const WrongCat& aWrongCat);
-	~WrongCat();
-	void	makeSound() const;
-	std::string	getType( void ) const;
+	Brain( void );
+	~Brain( void );
+	Brain( const Brain& aBrain);
+	Brain& operator=(const Brain& aBrain);
+	std::string getIdea(int index) const;
+	void	setIdea(int	index, std::string str);	
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: ldesboui <ldesboui@42agouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 09:52:45 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/20 10:07:12 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/03/26 14:22:36 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Cat.hpp"
@@ -15,23 +15,27 @@ Cat::Cat( void )
 {
 	std::cout << "Default constructor of Cat" << std::endl;
 	this->type = "Cat";
+	this->aBrain = new Brain();
 }
 
-Cat::Cat(const Cat& anCat)
+Cat::Cat(const Cat& aCat)
 {
 	std::cout << "Copy constructor of Cat" << std::endl;
-	this->type = anCat.type;
+	this->type = aCat.type;
+	this->aBrain = aCat.aBrain;
 }
 
 Cat::~Cat( void )
 {
+	delete this->aBrain;
 	std::cout << "Destructor of Cat" << std::endl;
 }
 
-Cat& Cat::operator=(const Cat& anCat)
+Cat& Cat::operator=(const Cat& aCat)
 {
 	std::cout << "Affectation operator of Cat" << std::endl;
-	this->type = anCat.type;
+	this->type = aCat.type;
+	this->aBrain = aCat.aBrain;
 	return (*this);
 }
 
@@ -43,4 +47,9 @@ void	Cat::makeSound( void ) const
 std::string	Cat::getType( void ) const
 {
 	return (this->type);
+}
+
+Brain *Cat::getBrain(void) const
+{
+	return (this->aBrain);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: ldesboui <ldesboui@42agouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 09:54:02 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/20 10:07:45 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/03/26 14:22:51 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Dog.hpp"
@@ -15,23 +15,27 @@ Dog::Dog( void )
 {
 	std::cout << "Default constructor of Dog" << std::endl;
 	this->type = "Dog";
+	this->aBrain = new Brain();
 }
 
-Dog::Dog(const Dog& anDog)
+Dog::Dog(const Dog& aDog)
 {
 	std::cout << "Copy constructor of Dog" << std::endl;
-	this->type = anDog.type;
+	this->type = aDog.type;
+	this->aBrain = aDog.aBrain;
 }
 
 Dog::~Dog( void )
 {
+	delete this->aBrain;
 	std::cout << "Destructor of Dog" << std::endl;
 }
 
-Dog& Dog::operator=(const Dog& anDog)
+Dog& Dog::operator=(const Dog& aDog)
 {
 	std::cout << "Affectation operator of Dog" << std::endl;
-	this->type = anDog.type;
+	this->type = aDog.type;
+	this->aBrain = aDog.aBrain;
 	return (*this);
 }
 
@@ -43,4 +47,8 @@ void	Dog::makeSound( void ) const
 std::string	Dog::getType( void ) const
 {
 	return (this->type);
+}
+Brain *Dog::getBrain(void) const
+{
+	return (this->aBrain);
 }

@@ -6,14 +6,17 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 18:30:12 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/20 10:06:10 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/03/26 14:22:07 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #pragma once
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog : public Animal
 {
+private:
+	Brain *aBrain;
 public:
 	Dog( void );
 	Dog(const Dog& aDog);
@@ -21,4 +24,5 @@ public:
 	~Dog();
 	void	makeSound() const;
 	std::string	getType( void ) const;
+	Brain* getBrain(void) const;
 };
