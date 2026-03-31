@@ -6,7 +6,7 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 09:55:26 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/31 11:07:05 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/03/31 12:58:46 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Cat.hpp"
@@ -64,5 +64,7 @@ int main()
 	for (int i =99; i >= 0; --i)
 		delete Animals[i];
 	return 0;
+
+	//Animal anAnimal;
 }
 
