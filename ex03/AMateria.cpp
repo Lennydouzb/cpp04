@@ -6,7 +6,7 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:11:55 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/31 14:49:27 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/01 14:59:34 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "AMateria.hpp"
@@ -27,6 +27,8 @@ AMateria::AMateria( const AMateria& anAMateria)
 
 AMateria &AMateria::operator=( const AMateria& anAMateria )
 {
+	if (this == &anAMateria)
+		return (*this);
 	return *this;
 }
 

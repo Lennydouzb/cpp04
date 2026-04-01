@@ -6,12 +6,10 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:42:07 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/31 18:06:27 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/01 14:59:00 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
-#include "Ice.hpp"
-#include "Cure.hpp"
 #include <climits>
 
 Character::Character( void )
@@ -43,13 +41,8 @@ Character::Character(const Character& aCharacter)
 	while (i < 4)
 	{
 		if (aCharacter.inventory[i])
-		{
-
-			if (aCharacter.inventory[i]->getType() == "ice")
-				this->inventory[i] = new Ice();
-			if (aCharacter.inventory[i]->getType() == "cure")
-				this->inventory[i] = new Cure();
-		}
+			this->inventory[i] = aCharacter.inventory[i]->clone();
+		++i;
 	}
 }
 
@@ -64,16 +57,16 @@ Character& Character::operator=(const Character& aCharacter)
 		if (this->inventory[i])
 			delete this->inventory[i];
 		if (aCharacter.inventory[i])
-		{
-			if (aCharacter.inventory[i]->getType() == "ice")
-				this->inventory[i] = new Ice();
-			if (aCharacter.inventory[i]->getType() == "cure")
-				this->inventory[i] = new Cure();
-		}
+			this->inventory[i] = aCharacter.inventory[i]->clone();
+		++i;
 	}
 	return (*this);
 }
 
+std::string const & Character::getName() const
+{
+	return (this->name);
+}
 void Character::equip(AMateria* m)
 {
 	int i = 0;

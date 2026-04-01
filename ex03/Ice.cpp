@@ -6,11 +6,13 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:34:45 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/03/31 15:00:35 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/01 15:02:58 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Ice.hpp"
+#include "ICharacter.hpp"
 #include <string>
+#include <iostream>
 
 Ice::Ice( void )
 {
@@ -24,6 +26,8 @@ Ice::Ice( const Ice& aIce)
 
 Ice &Ice::operator=( const Ice& aIce )
 {
+	if (this == &aIce)
+		return (*this);
 	return *this;
 }
 

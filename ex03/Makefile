@@ -1,9 +1,13 @@
 CXX=c++
 CXXFLAGS = -Wall -Werror -Wextra -g -std=c++98
-NAME = claptrap
+NAME = recap
 SRC_DIR = ./
 SRCS = $(SRC_DIR)main.cpp \
-	   $(SRC_DIR)ClapTrap.cpp
+	   $(SRC_DIR)AMateria.cpp \
+	   $(SRC_DIR)Character.cpp \
+	   $(SRC_DIR)Cure.cpp \
+	   $(SRC_DIR)Ice.cpp \
+	   $(SRC_DIR)MateriaSource.cpp \
 
 OBJ_DIR = .build/
 OBJS = $(SRCS:$(SRC_DIR)%.cpp=$(OBJ_DIR)%.o)
