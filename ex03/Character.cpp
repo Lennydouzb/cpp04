@@ -6,7 +6,7 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:42:07 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/04/01 14:59:00 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/01 15:42:43 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -20,6 +20,10 @@ Character::Character( void )
 Character::Character(std::string name)
 {
 	this->name = name;
+	for (int i = 0; i < 4; ++i)
+	{
+		this->inventory[i] = NULL;
+	}
 }
 
 Character::~Character()

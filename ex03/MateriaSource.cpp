@@ -6,21 +6,27 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 11:56:12 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/04/01 15:13:15 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/01 16:13:05 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "MateriaSource.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
 
-MateriaSource::MateriaSource( void ) {}
+MateriaSource::MateriaSource( void )
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		this->stock[i] = NULL;
+	}
+}
 
 MateriaSource::~MateriaSource()
 {
-	for (int i = 0; i <  4; ++i)
+	for (int i = 3; i >=  0; --i)
 	{
 		if (this->stock[i])
-			delete stock[i];
+			delete this->stock[i];
 	}
 }
 MateriaSource::MateriaSource(const MateriaSource& aMateriaSource)
@@ -51,10 +57,11 @@ void			MateriaSource::learnMateria(AMateria* aAMateria)
 	{
 		if (!this->stock[i])
 		{
-			this->stock[i] = aAMateria->clone();
+			this->stock[i] = aAMateria;
 			return;
 		}
 	}
+	delete aAMateria;
 }
 AMateria*		MateriaSource::createMateria(std::string const & type)
 {
