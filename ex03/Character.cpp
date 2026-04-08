@@ -6,7 +6,7 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:42:07 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/04/01 15:42:43 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/08 21:52:31 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Character.hpp"
@@ -46,6 +46,8 @@ Character::Character(const Character& aCharacter)
 	{
 		if (aCharacter.inventory[i])
 			this->inventory[i] = aCharacter.inventory[i]->clone();
+		else
+			this->inventory[i] = NULL;
 		++i;
 	}
 }
@@ -62,6 +64,8 @@ Character& Character::operator=(const Character& aCharacter)
 			delete this->inventory[i];
 		if (aCharacter.inventory[i])
 			this->inventory[i] = aCharacter.inventory[i]->clone();
+		else
+			this->inventory[i] = NULL;
 		++i;
 	}
 	return (*this);
@@ -87,12 +91,25 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-	if (this->inventory[idx])
-		this->inventory[idx] = NULL;
+	if (idx >= 0 && idx < 4)
+	{
+		if (this->inventory[idx])
+			this->inventory[idx] = NULL;
+	}
 }
 
 void Character::use(int idx, ICharacter& target)
 {
 	if (this->inventory[idx])
 		this->inventory[idx]->use(target);
+}
+AMateria *Character::getInvById(int idx)
+{
+	if (idx >= 0 && idx < 4)
+	{
+		if (this->inventory[idx])
+			return (this->inventory[idx]);
+		return (NULL);
+	}
+	return (NULL);
 }
