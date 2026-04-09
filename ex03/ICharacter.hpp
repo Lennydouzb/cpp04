@@ -6,7 +6,7 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 13:35:36 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/04/08 21:35:44 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/09 13:05:57 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #pragma once
@@ -21,5 +21,4 @@ public:
 	virtual void equip(AMateria* m) = 0;
 	virtual void unequip(int idx) = 0;
 	virtual void use(int idx, ICharacter& target) = 0;
-	virtual AMateria *getInvById(int idx) = 0;
 };

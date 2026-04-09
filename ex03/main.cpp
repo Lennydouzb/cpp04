@@ -6,7 +6,7 @@
 /*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:23:45 by ldesboui          #+#    #+#             */
-/*   Updated: 2026/04/08 21:53:13 by ldesboui         ###   ########.fr       */
+/*   Updated: 2026/04/09 13:34:19 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ICharacter.hpp"
@@ -45,6 +45,7 @@ int main()
 	
 	std::cout << "----------Personal tests--------" << std::endl;
 
+	std::cout << "----------Deep copy--------" << std::endl;
     Character* Franck = new Character("Franck");
 	IMateriaSource *source = new MateriaSource();
 	source->learnMateria(new Ice());
@@ -55,12 +56,49 @@ int main()
 	Franck->use(0, *Franck);
 	Franck->unequip(0);
 	delete aMateria;
+
+	//deep copy proof, aMateria of franck is deleted 
+	//and francky can still access his own
 	Francky->use(0, *Francky);
 	aMateria = Francky->getInvById(0);
 	Francky->unequip(0);
 	delete aMateria;
 	delete Franck;
 	delete Francky;
+	delete source;
+
+	std::cout << "----------------source max stock---------------" << std::endl;
+	source = new MateriaSource();
+	source->learnMateria(new Ice());
+	source->learnMateria(new Ice());
+	source->learnMateria(new Ice());
+	source->learnMateria(new Ice());
+	//should all be ice, no more space, cure shouldn't add
+	source->learnMateria(new Cure());
+	aMateria = source->createMateria("cure");
+	if (aMateria == NULL)
+		std::cout << "cure hasn't been created, not in stock" << std::endl;
+	delete source;
+	std::cout << "----------------character max stock---------------" << std::endl;
+	
+	source = new MateriaSource();
+	source->learnMateria(new Ice());
+	source->learnMateria(new Cure());
+
+	Franck = new Character("Franck");
+	Franck->equip(source->createMateria("ice"));
+	Franck->equip(source->createMateria("ice"));
+	Franck->equip(source->createMateria("ice"));
+	Franck->equip(source->createMateria("ice"));
+	// Franck inv is full cure should not add 
+	aMateria = source->createMateria("cure");
+	Franck->equip(aMateria);
+	Franck->use(0, *Franck);
+	Franck->use(1, *Franck);
+	Franck->use(2, *Franck);
+	Franck->use(3, *Franck);
+	delete Franck;
+	delete aMateria;
 	delete source;
     return 0;
 }
